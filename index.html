@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a13">
+  <meta name="description" content="MONOLITX — cybersecurity student exploring systems, software and creative development.">
+  <title>MONOLITX — Cybersecurity & Creative Tech</title>
+  <!--
+    MONOLITX PORTFOLIO · SINGLE-FILE TEMPLATE
+    ------------------------------------------------
+    EDIT ME: Search this document for "EDIT ME" to find example projects.
+    1. Change the branding/name "MONOLITX" if you want another public name.
+    2. Update the About and Skills text with ONLY true, public information.
+    3. Replace sample projects with your actual work and optional public URLs.
+    4. Never publish passwords, tokens, private IPs, internal diagrams or personal data.
+    5. All CSS and JavaScript are in this file; nothing to install.
+  -->
+  <style>
+    :root {
+      --bg: #080a13;
+      --panel: #111525;
+      --panel-2: #151a2c;
+      --line: rgba(183, 199, 255, .13);
+      --text: #f3f6ff;
+      --muted: #a0aac1;
+      --cyan: #65e3f4;
+      --purple: #a68bff;
+      --max: 1180px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 600px 450px at 88% 11%, rgba(80, 52, 170, .19), transparent 70%),
+        radial-gradient(ellipse 540px 520px at 4% 42%, rgba(32, 145, 161, .08), transparent 72%),
+        linear-gradient(180deg, #0b0d19, #080a13 38%, #080a13);
+    }
+    ::selection { color: #080a13; background: var(--cyan); }
+    a { color: inherit; }
+    button { font: inherit; }
+    .container { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+    .skip-link { position: absolute; z-index: 99; top: -90px; left: 10px; background: white; color: black; padding: 10px 15px; }
+    .skip-link:focus { top: 10px; }
+    .progress { position: fixed; z-index: 50; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple)); box-shadow: 0 0 16px rgba(101,227,244,.55); }
+    .header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid rgba(214,227,255,.08); background: rgba(8,10,19,.80); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .header-inner { min-height: 78px; display: flex; gap: 28px; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-size: 15px; font-weight: 800; letter-spacing: .11em; white-space: nowrap; }
+    .brand-mark { width: 31px; height: 31px; border-radius: 10px; border: 1px solid rgba(101,227,244,.5); background: linear-gradient(145deg, rgba(101,227,244,.16), rgba(166,139,255,.12)); display: grid; place-items: center; color: var(--cyan); box-shadow: inset 0 0 18px rgba(101,227,244,.1); }
+    .nav { display: flex; align-items: center; gap: 27px; }
+    .nav a { font-size: 13px; color: #bbc3d7; text-decoration: none; font-weight: 600; transition: color .2s; }
+    .nav a:hover, .nav a:focus-visible { color: var(--cyan); }
+    .nav .nav-contact { border: 1px solid rgba(101,227,244,.34); color: #d4faff; border-radius: 10px; padding: 9px 16px; }
+    .menu-toggle { display: none; color: var(--text); background: transparent; border: 1px solid var(--line); padding: 9px 12px; border-radius: 10px; cursor: pointer; }
+    .hero { min-height: 730px; display: flex; align-items: center; position: relative; padding: 115px 0 100px; }
+    .hero::before { content: ""; position: absolute; right: 6%; top: 4%; height: 500px; width: 500px; border: 1px solid rgba(151, 164, 229, .05); border-radius: 50%; pointer-events:none; }
+    .hero-grid { display: grid; grid-template-columns: 1.16fr .84fr; gap: clamp(25px, 7vw, 95px); align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--cyan); font-weight: 800; letter-spacing: .2em; font-size: 11px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; display: block; width: 19px; height: 2px; background: currentColor; }
+    .hero h1 { margin: 20px 0 22px; font-size: clamp(45px, 5.5vw, 78px); letter-spacing: -.067em; line-height: 1.06; font-weight: 800; }
+    .gradient-text { background: linear-gradient(100deg, var(--cyan), #8bc4ff 42%, #b89bff 83%); color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .hero-desc { max-width: 600px; color: var(--muted); font-size: clamp(15px, 1.45vw, 18px); line-height: 1.85; }
+    .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; margin-top: 35px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; min-height: 49px; text-decoration: none; font-size: 13px; font-weight: 800; border-radius: 11px; transition: transform .25s ease, background .25s ease, border-color .25s ease; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { color: #070e18; background: linear-gradient(100deg, #67def1, #93b3ff); box-shadow: 0 12px 42px rgba(74,171,217,.18); }
+    .btn-outline { color: #d9e3f7; border: 1px solid rgba(211,221,255,.2); background: rgba(255,255,255,.035); }
+    .btn-outline:hover { border-color: rgba(101,227,244,.5); }
+    .hero-meta { display: flex; align-items: center; gap: 13px; margin-top: 46px; color: #9aa6c3; font-size: 12px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #73e6bc; box-shadow: 0 0 0 5px rgba(115,230,188,.11), 0 0 19px rgba(115,230,188,.35); flex: 0 0 auto; }
+    .terminal-wrap { position: relative; animation: hover-up 8s ease-in-out infinite; }
+    .terminal-wrap::before { content: ""; position: absolute; inset: -25px; background: radial-gradient(circle, rgba(99,96,241,.14), transparent 66%); z-index: -1; filter: blur(12px); }
+    .terminal { overflow: hidden; border: 1px solid rgba(190,208,255,.19); background: rgba(20,25,45,.89); backdrop-filter: blur(16px); border-radius: 20px; box-shadow: 0 35px 110px rgba(0,0,0,.43), 0 0 0 6px rgba(255,255,255,.015); transform: rotate(2deg); }
+    .terminal-top { border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; padding: 17px 21px; background: rgba(255,255,255,.025); }
+    .dots { display: flex; gap: 7px; }
+    .dots span { display: block; width: 9px; height: 9px; border-radius: 100%; background: #f17c8c; }
+    .dots span:nth-child(2) { background: #f2c16f; }
+    .dots span:nth-child(3) { background: #77d5b8; }
+    .terminal-title { color: #8e9ab3; font-size: 11px; font-weight: 700; letter-spacing: .1em; }
+    .terminal-body { padding: 34px 28px 30px; min-height: 330px; font: 13px/2.05 "Cascadia Code", Consolas, Monaco, monospace; color: #d6e3ff; }
+    .terminal-body .prompt { color: var(--cyan); }
+    .terminal-body .dim { color: #8290ac; }
+    .terminal-body .value { color: #b6a2ff; }
+    .terminal-body .good { color: #8be8b6; }
+    .terminal-body .cursor { display: inline-block; width: 8px; height: 17px; background: var(--cyan); vertical-align: -3px; animation: blink 1.1s steps(1) infinite; }
+    .terminal-foot { margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(166,187,229,.17); color: #8a9fbc; font-size: 11px; letter-spacing: .08em; }
+    .floating-label { position: absolute; right: -25px; bottom: -28px; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(101,227,244,.24); background: rgba(13,27,41,.94); box-shadow: 0 15px 38px rgba(0,0,0,.3); color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: .1em; }
+    .section { padding: 110px 0; position: relative; }
+    .section + .section { border-top: 1px solid rgba(255,255,255,.035); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 42px; }
+    .section h2 { margin: 12px 0 0; max-width: 770px; font-size: clamp(32px, 4vw, 52px); line-height: 1.16; letter-spacing: -.055em; }
+    .section-sub { max-width: 375px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .overline { color: var(--cyan); text-transform: uppercase; letter-spacing: .2em; font-size: 11px; font-weight: 800; }
+    .about-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 22px; }
+    .glass-card { border: 1px solid var(--line); background: linear-gradient(155deg, rgba(28,34,57,.72), rgba(15,19,34,.76)); border-radius: 19px; box-shadow: inset 0 1px 0 rgba(255,255,255,.045); }
+    .about-main { padding: 38px; min-height: 295px; }
+    .about-main .big-copy { font-size: clamp(19px, 2vw, 24px); line-height: 1.57; letter-spacing: -.025em; font-weight: 600; margin: 0 0 18px; }
+    .about-main .small-copy { font-size: 14px; color: var(--muted); max-width: 650px; }
+    .about-aside { padding: 29px; display: flex; flex-direction: column; justify-content: space-between; background: radial-gradient(circle at 100% 0, rgba(105,87,209,.18), transparent 64%), var(--panel); }
+    .about-aside h3 { margin: 0 0 15px; font-size: 18px; }
+    .chip-group { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { display: inline-flex; padding: 7px 11px; color: #c8d8e9; background: rgba(188,207,255,.055); border: 1px solid rgba(188,207,255,.14); border-radius: 8px; font-size: 12px; }
+    .aside-bottom { margin-top: 32px; display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--muted); }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; }
+    .skill-card { padding: 27px 23px; min-height: 246px; transition: transform .25s ease, border-color .25s ease; }
+    .skill-card:hover, .project-card:hover { transform: translateY(-6px); border-color: rgba(101,227,244,.29); }
+    .skill-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 12px; border: 1px solid rgba(101,227,244,.16); background: rgba(101,227,244,.06); color: var(--cyan); font-size: 22px; margin-bottom: 23px; }
+    .skill-card:nth-child(even) .skill-icon { color: #bca6ff; background: rgba(166,139,255,.08); border-color: rgba(166,139,255,.19); }
+    .skill-card h3 { margin: 0 0 8px; font-size: 16px; }
+    .skill-card p { margin: 0; font-size: 13px; line-height: 1.8; color: var(--muted); }
+    .skill-foot { margin-top: 20px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #7eaec2; font-weight: 800; }
+    .filter-list { display: flex; flex-wrap: wrap; gap: 9px; margin: -6px 0 27px; }
+    .filter { cursor: pointer; padding: 10px 16px; border-radius: 9px; border: 1px solid var(--line); background: rgba(255,255,255,.025); color: #aebad0; font-size: 12px; font-weight: 700; transition: background .2s, color .2s, border-color .2s; }
+    .filter:hover, .filter:focus-visible { border-color: rgba(101,227,244,.45); color: white; }
+    .filter[aria-pressed="true"] { color: #071019; background: var(--cyan); border-color: var(--cyan); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 17px; }
+    .project-card { overflow: hidden; transition: transform .25s ease, border-color .25s ease; }
+    .project-card[hidden] { display: none !important; }
+    .project-art { height: 170px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .project-art::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(to bottom,black, transparent); }
+    .project-art.sec { background: radial-gradient(circle at 50% 65%, rgba(39,216,218,.25), transparent 55%), linear-gradient(130deg,#10273b,#11172c); }
+    .project-art.dev { background: radial-gradient(circle at 55% 50%, rgba(120,111,255,.26), transparent 65%),linear-gradient(135deg,#1c1a40,#11182d); }
+    .project-art.game { background: radial-gradient(circle at 55% 50%, rgba(229,104,201,.2), transparent 65%),linear-gradient(135deg,#2c193a,#121729); }
+    .art-symbol { position: relative; z-index: 1; font-size: 68px; font-weight: 800; letter-spacing: -.15em; line-height: 1; color: rgba(215,247,255,.75); text-shadow: 0 0 38px rgba(101,227,244,.5); }
+    .project-art.dev .art-symbol { color: #c6baff; text-shadow: 0 0 38px rgba(166,139,255,.48); }
+    .project-art.game .art-symbol { color: #f0b2db; text-shadow: 0 0 38px rgba(255,132,195,.43); }
+    .project-content { padding: 25px 25px 27px; }
+    .project-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; color: var(--cyan); font-size: 10px; letter-spacing: .11em; font-weight: 800; text-transform: uppercase; }
+    .project-top .example { color: #e0be80; }
+    .project-content h3 { font-size: 19px; margin: 13px 0 8px; letter-spacing: -.025em; }
+    .project-content p { min-height: 86px; color: var(--muted); margin: 0 0 22px; font-size: 13px; line-height: 1.75; }
+    .project-content .chip-group { gap: 6px; }
+    .project-content .chip { padding: 5px 8px; font-size: 10px; }
+    .project-hint { font-size: 11px; margin-top: 22px; color: #8ea7ba; border-top: 1px solid var(--line); padding-top: 14px; }
+    .notes-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 20px; align-items: stretch; }
+    .notes-feature { padding: 42px; background: radial-gradient(ellipse at 85% 0%, rgba(34,200,192,.1), transparent 60%),var(--panel); }
+    .notes-feature .symbol { color: var(--cyan); font-size: 48px; display: block; line-height: 1; }
+    .notes-feature h3 { font-size: 27px; letter-spacing: -.035em; margin: 24px 0 15px; }
+    .notes-feature p { color: var(--muted); font-size: 14px; }
+    .notes-stack { display: grid; gap: 12px; }
+    .note { padding: 20px 23px; display: flex; align-items: start; gap: 16px; }
+    .note-count { flex: 0 0 auto; font: 700 12px Consolas, monospace; color: var(--cyan); margin-top: 3px; }
+    .note h4 { font-size: 14px; margin: 0 0 5px; }
+    .note p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.65; }
+    .journey { padding: 47px; background: radial-gradient(ellipse at 90% 50%, rgba(112,91,212,.14), transparent 55%),linear-gradient(140deg,#151b30,#111624); }
+    .journey-top { display: flex; justify-content: space-between; align-items: start; gap: 25px; }
+    .journey h3 { font-size: 30px; margin: 0 0 13px; letter-spacing: -.04em; }
+    .journey p { margin: 0; max-width: 580px; color: var(--muted); font-size: 14px; }
+    .journey-label { white-space: nowrap; border: 1px solid rgba(101,227,244,.27); border-radius: 999px; color: var(--cyan); font-size: 11px; letter-spacing: .09em; padding: 8px 13px; }
+    .journey-tags { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .journey-tags span { border-radius: 9px; background: rgba(188,200,240,.05); border: 1px solid var(--line); padding: 9px 13px; font-size: 12px; color: #cbd3e7; }
+    .contact { text-align: center; padding: 118px 0 130px; }
+    .contact h2 { max-width: 790px; margin: 17px auto 22px; font-size: clamp(37px,5.5vw,65px); letter-spacing: -.065em; line-height: 1.14; }
+    .contact p { color: var(--muted); max-width: 575px; margin: 0 auto 30px; font-size: 15px; }
+    .footer { padding: 26px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer p { margin: 0; color: #7f8ba5; font-size: 12px; }
+    .footer a { text-decoration: none; color: #a5c8dc; font-size: 12px; }
+    .footer a:hover { color: var(--cyan); }
+    .js .reveal { opacity: 0; transform: translateY(35px); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); transition-delay: var(--delay, 0ms); }
+    .js .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    @keyframes hover-up { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (max-width: 1040px) {
+      .hero-grid { grid-template-columns: 1fr 0.9fr; gap: 28px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-content p { min-height: 65px; }
+      .hero { min-height: 690px; }
+    }
+    @media (max-width: 760px) {
+      .container { width: min(calc(100% - 34px), var(--max)); }
+      .header-inner { min-height: 70px; flex-wrap: wrap; }
+      .menu-toggle { display: block; margin-left: auto; }
+      .nav { width: 100%; gap: 0; flex-wrap: wrap; padding-bottom: 14px; }
+      .nav a { flex: 1 0 50%; padding: 12px 6px; }
+      .nav .nav-contact { text-align: center; flex: 1 0 100%; margin-top: 6px; }
+      .js .nav { display: none; }
+      .js .nav.is-open { display: flex; }
+      .hero { min-height: auto; padding: 78px 0 95px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 72px; }
+      .hero h1 { font-size: clamp(43px,9vw,66px); }
+      .terminal-wrap { max-width: 540px; margin: auto; width: calc(100% - 18px); }
+      .floating-label { right: -12px; bottom: -19px; }
+      .section { padding: 83px 0; }
+      .section-heading { align-items: start; flex-direction: column; gap: 17px; margin-bottom: 30px; }
+      .about-grid,.notes-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .journey-top { flex-direction: column; }
+    }
+    @media (max-width: 560px) {
+      .projects-grid,.skills-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 44px; }
+      .terminal-body { padding: 25px 17px 22px; font-size: 11px; }
+      .terminal { transform: none; }
+      .about-main,.notes-feature,.journey { padding: 26px; }
+      .project-content p { min-height: auto; }
+      .contact { padding: 88px 0 100px; }
+      .footer-inner { flex-direction: column; align-items: start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="MONOLITX homepage"><span class="brand-mark" aria-hidden="true">◇</span> MONOLITX</a>
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav">☰ &nbsp;Menu</button>
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#notes">Security Notes</a>
+        <a href="#journey">Journey</a>
+        <a class="nav-contact" href="#contact">Connect ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow reveal">Cybersecurity · Development · Creativity</div>
+          <!-- EDIT: change this headline and introduction as you wish. -->
+          <h1 class="reveal" id="hero-title" style="--delay:100ms">Curious about tech.<br><span class="gradient-text">Driven to build.</span></h1>
+          <p class="hero-desc reveal" style="--delay:190ms">I'm <strong>MONOLITX</strong>, a cybersecurity student exploring networks, Linux, programming and game development. This is my space to share what I'm learning — and what I'm creating along the way.</p>
+          <div class="cta reveal" style="--delay:270ms">
+            <a class="btn btn-primary" href="#projects">Explore projects <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#about">Get to know me <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-meta reveal" style="--delay:350ms"><span class="status-dot" aria-hidden="true"></span> Currently learning, experimenting & improving</div>
+        </div>
+        <div class="terminal-wrap reveal" style="--delay:230ms" aria-label="Decorative terminal showing areas of interest">
+          <div class="terminal">
+            <div class="terminal-top"><div class="dots" aria-hidden="true"><span></span><span></span><span></span></div><span class="terminal-title">ABOUT_ME / TERMINAL</span></div>
+            <div class="terminal-body" aria-hidden="true">
+              <div><span class="prompt">➜</span> whoami</div>
+              <div class="value">cybersecurity_student</div><br>
+              <div><span class="prompt">➜</span> cat interests.txt</div>
+              <div class="dim">01 / <span class="good">security & systems</span></div>
+              <div class="dim">02 / <span class="good">coding & automation</span></div>
+              <div class="dim">03 / <span class="good">game development</span></div><br>
+              <div><span class="prompt">➜</span> echo $MINDSET</div>
+              <div class="value">learn. build. improve.</div>
+              <div class="terminal-foot">STATUS: EXPLORING <span class="cursor"></span></div>
+            </div>
+          </div>
+          <div class="floating-label" aria-hidden="true">◉ &nbsp; LEARNING MODE</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-heading reveal"><div><span class="overline">01 / About</span><h2 id="about-title">More than one<br><span class="gradient-text">area of interest.</span></h2></div><p class="section-sub">Technology connects different disciplines. I enjoy learning how things work and turning ideas into projects.</p></div>
+        <div class="about-grid">
+          <article class="glass-card about-main reveal">
+            <p class="big-copy">I'm studying cybersecurity and developing a foundation in technical problem-solving, systems and software.</p>
+            <p class="small-copy">My interests also extend to game development and other creative coding projects. On this site, I share learning notes and selected work — focusing on what I built, what I learned, and what I want to improve.</p>
+            <!-- EDIT: Replace the two paragraphs above with your own truthful introduction. -->
+          </article>
+          <aside class="glass-card about-aside reveal" style="--delay:120ms">
+            <div><h3>What interests me</h3><div class="chip-group"><span class="chip">Cybersecurity</span><span class="chip">Linux</span><span class="chip">Networks</span><span class="chip">Programming</span><span class="chip">Game Dev</span><span class="chip">Creative Tech</span></div></div>
+            <div class="aside-bottom"><span class="status-dot" aria-hidden="true"></span> Open to learning new technologies</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-heading reveal"><div><span class="overline">02 / Skills & interests</span><h2 id="skills-title">My evolving <span class="gradient-text">toolkit.</span></h2></div><p class="section-sub">These are subjects I am exploring — not claims of expert-level proficiency.</p></div>
+        <div class="skills-grid">
+          <article class="glass-card skill-card reveal"><div class="skill-icon" aria-hidden="true">⌘</div><h3>Security Foundations</h3><p>Security principles, safer habits and hands-on learning in controlled environments.</p><div class="skill-foot">Learning</div></article>
+          <article class="glass-card skill-card reveal" style="--delay:90ms"><div class="skill-icon" aria-hidden="true">⌁</div><h3>Networks & Linux</h3><p>Working with command-line tools, networking concepts and system configuration.</p><div class="skill-foot">Practising</div></article>
+          <article class="glass-card skill-card reveal" style="--delay:180ms"><div class="skill-icon" aria-hidden="true">&lt;/&gt;</div><h3>Programming</h3><p>Building programming fundamentals and exploring small tools and applications.</p><div class="skill-foot">Developing</div></article>
+          <article class="glass-card skill-card reveal" style="--delay:270ms"><div class="skill-icon" aria-hidden="true">✧</div><h3>Creative Development</h3><p>Game mechanics, prototyping, interaction design and creative problem-solving.</p><div class="skill-foot">Exploring</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-heading reveal"><div><span class="overline">03 / Selected work</span><h2 id="projects-title">Ideas turned into <span class="gradient-text">projects.</span></h2></div><p class="section-sub">Show your role, the tools used, the challenge and a meaningful result — even for small projects.</p></div>
+        <div class="filter-list reveal" role="group" aria-label="Filter projects by category">
+          <button type="button" class="filter" data-filter="all" aria-pressed="true">All projects</button>
+          <button type="button" class="filter" data-filter="security" aria-pressed="false">Security & Networks</button>
+          <button type="button" class="filter" data-filter="development" aria-pressed="false">Development</button>
+          <button type="button" class="filter" data-filter="game" aria-pressed="false">Game Dev</button>
+        </div>
+        <div class="projects-grid" id="project-grid">
+          <!-- EDIT ME: Replace ALL THREE sample cards with real, non-sensitive projects. -->
+          <article class="glass-card project-card reveal" data-category="security">
+            <div class="project-art sec" aria-hidden="true"><span class="art-symbol">&gt;_</span></div>
+            <div class="project-content"><div class="project-top"><span>Security & Networks</span><span class="example">Sample · edit me</span></div><h3>Network Lab</h3><p>Example: Document a safe classroom network configuration task. Describe your objective, your own contribution and your learning outcome.</p><div class="chip-group"><span class="chip">Networking</span><span class="chip">Lab</span></div><div class="project-hint">Replace with your actual project details.</div></div>
+          </article>
+          <article class="glass-card project-card reveal" style="--delay:100ms" data-category="development">
+            <div class="project-art dev" aria-hidden="true"><span class="art-symbol">{ }</span></div>
+            <div class="project-content"><div class="project-top"><span>Development</span><span class="example">Sample · edit me</span></div><h3>Python Mini Project</h3><p>Example: Present a small script or utility. Explain the problem it solves, which language you used and what you learned.</p><div class="chip-group"><span class="chip">Python</span><span class="chip">Automation</span></div><div class="project-hint">Replace with your actual project details.</div></div>
+          </article>
+          <article class="glass-card project-card reveal" style="--delay:200ms" data-category="game">
+            <div class="project-art game" aria-hidden="true"><span class="art-symbol">✦</span></div>
+            <div class="project-content"><div class="project-top"><span>Game Development</span><span class="example">Sample · edit me</span></div><h3>Game Prototype</h3><p>Example: Showcase a mechanic, level or prototype. Describe your responsibilities, development process and lessons learned.</p><div class="chip-group"><span class="chip">Game Dev</span><span class="chip">Design</span></div><div class="project-hint">Replace with your actual project details.</div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="notes" aria-labelledby="notes-title">
+      <div class="container">
+        <div class="section-heading reveal"><div><span class="overline">04 / Security notes</span><h2 id="notes-title">Build carefully.<br><span class="gradient-text">Share responsibly.</span></h2></div><p class="section-sub">High-level security lessons can demonstrate your mindset without exposing private material.</p></div>
+        <div class="notes-grid">
+          <div class="glass-card notes-feature reveal"><span class="symbol" aria-hidden="true">⬡</span><h3>Security is a habit,<br>not just a tool.</h3><p>A place to collect general principles, reflections and practical reminders. Keep examples anonymous and avoid operational details from private environments.</p></div>
+          <div class="notes-stack">
+            <article class="glass-card note reveal" style="--delay:70ms"><div class="note-count">01</div><div><h4>Protect credentials</h4><p>Use strong, unique passwords and multi-factor authentication. Never publish secrets in a repository.</p></div></article>
+            <article class="glass-card note reveal" style="--delay:140ms"><div class="note-count">02</div><div><h4>Apply least privilege</h4><p>Give accounts and applications only the permissions they genuinely need.</p></div></article>
+            <article class="glass-card note reveal" style="--delay:210ms"><div class="note-count">03</div><div><h4>Think before sharing</h4><p>Remove identifying details from screenshots, logs and examples before publishing.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journey" aria-labelledby="journey-title">
+      <div class="container">
+        <div class="glass-card journey reveal">
+          <div class="journey-top"><div><span class="overline">05 / Learning journey</span><h3 id="journey-title">Always a work in progress.</h3><p>I'll keep this space updated as I learn new concepts, finish projects and discover interesting areas of technology. Growth matters more than pretending to know everything.</p></div><span class="journey-label">↗ STILL EXPLORING</span></div>
+          <div class="journey-tags"><span>Learn the fundamentals</span><span>Build small projects</span><span>Document what works</span><span>Improve with practice</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container reveal"><span class="overline">06 / Connect</span><h2 id="contact-title">Let's keep <span class="gradient-text">building.</span></h2><p>Interested in my public work? Explore my GitHub profile. No private contact information is required on this portfolio.</p><a class="btn btn-primary" href="https://github.com/MONOLITX" target="_blank" rel="noopener noreferrer">Visit my GitHub <span aria-hidden="true">↗</span></a></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-inner"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">◇</span> MONOLITX</a><p>Personal portfolio · Made with HTML, CSS & JavaScript</p><a href="#top">Back to top ↑</a></div></footer>
+
+  <script>
+    // Reveal sections as they enter the viewport; respect reduced-motion preferences.
+    const revealElements = document.querySelectorAll('.reveal');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+      revealElements.forEach(element => revealObserver.observe(element));
+    } else {
+      document.documentElement.classList.remove('js');
+    }
+
+    // Project filters.
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.filter;
+        filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        projectCards.forEach(card => { card.hidden = category !== 'all' && card.dataset.category !== category; });
+      });
+    });
+
+    // Compact navigation on smaller screens.
+    const menuButton = document.getElementById('menu-toggle');
+    const nav = document.getElementById('site-nav');
+    menuButton.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Thin page scroll progress bar.
+    const progress = document.getElementById('progress');
+    let scheduled = false;
+    function updateProgress() {
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      progress.style.width = `${Math.min(100, Math.max(0, window.scrollY / maxScroll * 100))}%`;
+      scheduled = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!scheduled) { scheduled = true; requestAnimationFrame(updateProgress); }
+    }, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  </script>
+</body>
+</html>
